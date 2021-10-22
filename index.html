@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iron Meiden Album list</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="cssstyle.css" />
+  </head>
+  <body>
+    <div class="flex-container">
+      <img src="./ironmaiden.jpeg" alt="ironmaiden" />
+    </div>
+    <div class="button-flex-container">
+      <button type="button" class="btn btn-outline-dark" value="all">
+        all
+      </button>
+      <button type="button" class="btn btn-outline-dark" value="year">
+        years
+      </button>
+      <button type="button" class="btn btn-outline-dark" value="title">
+        titles
+      </button>
+      <button type="button" class="btn btn-outline-dark" value="country">
+        country
+      </button>
+      <button type="button" class="btn btn-outline-dark" value="cover_image">
+        covers
+      </button>
+      <label for="ironmaiden">Choose list:</label>
+      <select name="ironmaiden" id="choose-list">
+        <option value="all">All Years</option>
+        <!-- <option value="1980">1980</option>
+        <option value="1985">1985</option>
+        <option value="1995">1995</option> -->
+      </select>
+      <br /><br />
+      <table class="table" id="table"></table>
+    </div>
+    <script src="response.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
