@@ -1,7 +1,5 @@
 let data = response.results;
 
-console.log(`data`, data);
-
 function renderTable() {
   // we take the table
   let table = document.getElementById("table");
