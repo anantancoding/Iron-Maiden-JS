@@ -1,8 +1,9 @@
 let data = response.results;
 
-function renderTable() {
+function renderTable(data) {
   // we take the table
   let table = document.getElementById("table");
+  table.innerHTML = "";
   // we create the table head
   let thead = document.createElement("thead");
   // we create the table head cells and add text to them
@@ -38,6 +39,7 @@ function renderTable() {
     // create image
     var img = checkMediaType(data, i);
     td4.appendChild(img);
+
     /* if (data[i].cover_image.slice(-3) !== "gif") {
       var img = document.createElement("img");
       img.src = data[i].cover_image;
@@ -63,7 +65,7 @@ function renderTable() {
   table.appendChild(tbody);
 }
 
-renderTable();
+renderTable(data);
 
 function checkMediaType(data, i) {
   if (data[i].cover_image.slice(-3) !== "gif") {
@@ -117,7 +119,7 @@ function chooseTableColumn(buttonValue) {
       var tr = document.createElement("tr");
 
       var td = document.createElement("td");
-      td.innerHTML = data[i].year;
+      td.innerHTML = checkYear(data, i);
       tr.appendChild(td);
       tbody.appendChild(tr);
     }
@@ -171,7 +173,7 @@ function chooseTableColumn(buttonValue) {
     }
     table.appendChild(tbody);
   } else {
-    renderTable();
+    renderTable(data);
   }
 }
 
@@ -234,6 +236,12 @@ function filterByYear(year) {
   console.log(`data`, data);
   // morden JS spike
   console.log(year);
+  var filterData = data.filter((album) => {
+    return (year !== "all" && album.year === year) || year === "all";
+    //   || means "or" && means "and"
+  });
+  console.log(filterData);
+  renderTable(filterData);
 }
 
 /*
