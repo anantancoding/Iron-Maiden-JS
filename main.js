@@ -1,6 +1,34 @@
-let data = response.results;
+var myHeaders = new Headers();
+myHeaders.append(
+  "Cookie",
+  "__cf_bm=cUlqYHQEMl0Pf3sEPYDzXJR1aR9pVX66V7tvN1pgXXg-1635343333-0-AaJjSd7BZoaBKMN+lX2dqbz2nIZLq83Shoh3O/pcJH8F1dDp7B6cThd+fuf750ffYhjlu8D67MDzFY7A/cwCq0M="
+);
+
+var requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow",
+};
+
+function getData() {
+  fetch(
+    "https://api.discogs.com/database/search?q=rihana&key=ndqiGGFVIuiLYHmjQExU&secret=ADOGBtMyjsEJjQkyVcoNQTASKAuLfdCW",
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((ananData) => {
+      console.log("Anan computer>>>>>>", ananData.results);
+      const data = ananData.results;
+      renderTable(data);
+      createSelectOptions(data);
+    })
+    .catch((error) => console.log("error", error));
+}
+
+getData(data);
 
 function renderTable(data) {
+  console.log("my data", data);
   // we take the table
   let table = document.getElementById("table");
   table.innerHTML = "";
@@ -65,7 +93,7 @@ function renderTable(data) {
   table.appendChild(tbody);
 }
 
-renderTable(data);
+// renderTable(data);
 
 function checkMediaType(data, i) {
   if (data[i].cover_image.slice(-3) !== "gif") {
@@ -190,7 +218,8 @@ buttons.forEach((button) => {
   });
 });
 
-function createSelectOptions() {
+function createSelectOptions(data) {
+  console.log("data again", data);
   var years = [];
   data.forEach((object) => {
     if (object.year !== undefined) {
@@ -237,7 +266,7 @@ function filterByYear(year) {
   // morden JS spike
   console.log(year);
   var filterData = data.filter((album) => {
-    return (year !== "all" && album.year === year) || year === "all";
+    return album.year === year || year === "all";
     //   || means "or" && means "and"
   });
   console.log(filterData);
